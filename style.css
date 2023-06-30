@@ -34,9 +34,12 @@ border: 2px solid white;
 
 .modal-dialog{
     width: 90%;
+    font-size: 40px;
+color: black;
 }
 
 .instructions{
     display: inline-block;
     width: 45%;
+    
 }
