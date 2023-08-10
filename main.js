@@ -21,9 +21,9 @@ var ball = {
     dy:3
 }
 
-function setup(){
-  var canvas =  createCanvas(700,600);
-}
+//function setup(){
+  //var canvas =  createCanvas(700,600);
+//}
 
 
 function draw(){
@@ -95,11 +95,11 @@ function drawScore(){
     textAlign(CENTER);
     textSize(20);
     fill("white");
-    stroke(250,0,0)
-    text("Player:",100,50)
+    stroke(250,0,0);
+    text("Player:",100,50);
     text(playerscore,140,50);
-    text("Computer:",500,50)
-    text(pcscore,555,50)
+    text("Computer:",500,50);
+    text(pcscore,555,50);
 }
 
 
@@ -127,13 +127,13 @@ function move(){
 }
 if(pcscore ==4){
     fill("#FFA500");
-    stroke(0)
+    stroke(0);
     rect(0,0,width,height-1);
     fill("white");
     stroke("white");
-    textSize(25)
+    textSize(25);
     text("Game Over!☹☹",width/2,height/2);
-    text("Reload The Page!",width/2,height/2+30)
+    text("Reload The Page!",width/2,height/2+30);
     noLoop();
     pcscore = 0;
 }
@@ -150,7 +150,7 @@ function models(){
     noStroke();
     text("Width:"+width,135,15);
     text("Speed:"+abs(ball.dx),50,15);
-    text("Height:"+height,235,15)
+    text("Height:"+height,235,15);
 }
 
 
@@ -163,6 +163,10 @@ function paddleInCanvas(){
     mouseY =0;
   }  
 }
+
+right_wristX = 0;
+right_wristY = 0;
+score = 0;
 function preload(){
 
 }
@@ -172,7 +176,7 @@ function setup() {
     canvas.parent("canvas");
     video = createCapture(VIDEO);
 	video.size(1140,500);
-  //video.hide();
+
 	video.parent("game_holder");
 
 	PoseNet = ml5.poseNet(video,modelLoaded);
@@ -180,7 +184,23 @@ function setup() {
 }
 
 function modelLoaded() {
-  console.log("Model Loaded!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+  console.log("Model Loaded!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 }
 
-function gotPoses(){}
+function gotPoses(results){
+if( results.length > 0){
+console.log(results);
+right_wristX = results[0].pose.rightWrist.x;
+right_wristY = results[0].pose.rightWrist.y;
+score = results[0].pose.rightWrist.confidence
+console.log("wrist x = " + right_wristX + " wrist y = " + right_wristY + " confidence = " + score);
+}
+}
+
+function draw(){
+if(score > 0.2){
+  fill("blue");
+  stroke("blue");
+  circle(right_wristX,right_wristY,20);
+}
+}
