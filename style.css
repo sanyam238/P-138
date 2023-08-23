@@ -1,45 +1,41 @@
-body
-{
-color: white;
-text-align: center;
-}
 
-.heading{
-    width:100%;
-    text-align: left;
+.heading
+{
+width: 100%;
+text-align: left;
+}
+.heading h3{
+    display: inline;
 }
 
 .heading button{
-float: right;
-border: 2px solid white;
+    float: right;
+    border: 1px solid white;
 }
 
-.heading h3{
-    display: inline;
-    padding-top: 4px;
+#start ,#status, #restart
+{
+font-size: 22px;
 }
 
-
-
-#start, #restart,#status{
-    font-size: 39px;
+.modal-dialog
+{
+    width: 70%;
 }
-
-#footer{
-    width: 100%;
-    font-size: 40px;
-    bottom: 0;
-    line-height: 2;
+.modal-body
+{
+    text-align: left;
+    font-size: 20px;
 }
-
-.modal-dialog{
-    width: 90%;
-    font-size: 40px;
-color: black;
+h4
+{
+   background-color: grey;
+   color:white;
+   line-height: 2;
 }
-
-.instructions{
-    display: inline-block;
-    width: 45%;
-    
-}
+canvas 
+  {
+      border:3px solid white;
+      border-radius: 20px;
+      box-shadow:  5px 5px 5px white;
+  }
